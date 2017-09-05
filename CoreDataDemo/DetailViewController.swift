@@ -16,6 +16,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
          // Do any additional setup after loading the view.
+        navigationItem.title = "College List"
         tableView.delegate = self
         tableView.dataSource = self
     }

@@ -19,7 +19,7 @@ class StudentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+          navigationItem.title = "Student Details"
         // Do any additional setup after loading the view.
     }
 
@@ -57,7 +57,6 @@ class StudentViewController: UIViewController {
             request.predicate = predicate
             do {
                 let objects = try context.fetch(request)
-                
                 print(objects)
                 objects.first?.addToCollegeStudents(studentEntity)
               //  studentEntity.studentCollege = objects.first
@@ -82,8 +81,7 @@ class StudentViewController: UIViewController {
         fetchStudent()
         
         let studentsTableView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:"StudentsTableViewController") as! StudentTableView
-        present(studentsTableView, animated: true, completion: nil)
-        
+        //present(studentsTableView, animated: true, completion: nil)
         self.navigationController?.pushViewController(studentsTableView, animated: true)
     }
     
@@ -94,13 +92,15 @@ class StudentViewController: UIViewController {
         do {
             let objects = try context.fetch(request)
             SharedData.arrayOfStudents = objects
-           // print(objects)
-           // SharedData.arrayOfStudents = objects
-//            for item in SharedData.arrayOfStudents {
-//                print("Student name is \(item.studentName!)")
-//                print("Student id is \(item.studentId)")
-//                //print( "Student college is \(item.studentCollege!.collegeName!)")
-//            }
+            print(objects)
+            SharedData.arrayOfStudents = objects
+            for item in SharedData.arrayOfStudents {
+                print("Student name is \(item.studentName!)")
+                print("Student id is \(item.studentId)")
+                if let studentCollegeName = item.studentCollege?.collegeName{
+                print( "Student college is \(studentCollegeName)")
+                }
+           }
         }
         catch {
         }

@@ -13,6 +13,7 @@ class StudentTableView: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var studentTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Student List"
         studentTable.delegate = self
         studentTable.dataSource = self
         // Do any additional setup after loading the view.

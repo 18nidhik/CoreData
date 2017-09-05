@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "College Details"
         // Do any additional setup after loading the view, typically from a nib.
         }
 
@@ -36,34 +37,34 @@ class ViewController: UIViewController {
             if  let collegeIdNumber = Int32(self.collegeIdText.text!){
                 collegeEntity.collegeId = collegeIdNumber
             }
-          //  var count : Int = 0
+//           var count : Int = 0
 //            for item in SharedData.arrayOfColleges{
 //                if item.collegeName == collegeEntity.collegeName{
+//                    print("items colg name is \(String(describing: item.collegeName))")
 //                    count += 1
 //                }
-//            }
-          //  if count >= 1 {
+//           }
+//           if count == 0 {
             do{
                 try context.save()
             }
             catch let error{
                 print(error)
             }
-       // }
+//        }
 //            else {
 //                print("College already exists")
 //            }
-            
         }
         
     }
     @IBAction func nextOfCollege(_ sender: Any) {
         
         let studentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:"StudentViewController") as! StudentViewController
-        present(studentViewController, animated: true, completion: nil)
+       // present(studentViewController, animated: true, completion: nil)
         studentViewController.studentCollegeName = collegeNameText.text
         studentViewController.studentCollegeId = Int(collegeIdText.text!)
-       // self.navigationController?.pushViewController(studentViewController, animated: true)
+        self.navigationController?.pushViewController(studentViewController, animated: true)
         
     }
     
@@ -71,9 +72,9 @@ class ViewController: UIViewController {
         
         fetchCollege()
         let detailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:"DetailViewController") as! DetailViewController
-       present(detailsViewController, animated: true, completion: nil)
+      // present(detailsViewController, animated: true, completion: nil)
         
-       // self.navigationController?.pushViewController(detailsViewController, animated: true)
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     
